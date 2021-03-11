@@ -102,7 +102,7 @@ def register_user(request: HttpRequest):
         if (account_type == "external"):
             client_id = body["clientId"]
             new_user = User(username=username, password=password,
-                            account_type='external', client_id=client_id, favorites=[])
+                            account_type='external', client_id=client_id)
             new_user.save()
         else:
             client_id = 'NOID'
@@ -121,12 +121,13 @@ def register_user(request: HttpRequest):
 
     except JSONDecodeError:
         return HttpResponseBadRequest('invalid_json')
-    except IntegrityError:
-        return HttpResponseBadRequest('existing_username')
-    except KeyError:
-        return HttpResponseBadRequest('invalid_json')
-    except:
-        return HttpResponseServerError('server_failure')
+    # except IntegrityError as e:
+    #     print(type(e), e)
+    #     return HttpResponseBadRequest('existing_username')
+    # except KeyError:
+    #     return HttpResponseBadRequest('invalid_json')
+    # except:
+    #     return HttpResponseServerError('server_failure')
 
 
 @csrf_exempt
