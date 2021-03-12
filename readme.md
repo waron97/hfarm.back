@@ -186,7 +186,8 @@ Dal punto di vista della gestione del codice crescente di un progetto in continu
 Per quanto riguarda invece la crescita di utenza e carico sul server, ci sono diversi modi per gestirle una tale espansione. Una opzione è ovviamente di assegnare al progetto macchine con più memoria e potenza computazionale. Anche dockerizzare un'app Django è una soluzione comune, e a quel punto una soluzione come Kubernetes per la distribuzione è un'ottima strada da percorrere.
 
 ### Protezione e recupero dei dati
-Sicuramente tutti i servizi che offorno Database-As-Service hanno anche un'opzione per creare un backup periodico dei dati. Se si esegue da macchina virtuale, ci sarebbe bisogno di uno script o un servizio che esegue la stessa operazione.
+
+Sicuramente tutti i servizi che offorno Database-As-Service hanno anche un'opzione per creare un backup periodico dei dati. Se si esegue da macchina virtuale, ci sarebbe bisogno di uno script o un servizio che esegue la stessa operazione. Nel caso dei relazionali, come anche di Firestore e sicuramente di Mongo, inoltre, ci sono i cosiddetti Trigger Functions, che possono essere impostati in maniera tale da creare una copia del valore precedente di un campo quando questo viene cambiato o cancellato. In questo modo, se i dati vengono corrotti, si può facilmente tornare a una versione precedente senza resettare l'intero database.
 
 ### Gestione pagamenti
 
