@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 SECRET_KEY = 'yz5099+)z!3bbhk=e3-3&-gxphom&2!((yd%&aze&9u%!0$r2p'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', 'hfarm.aronwinkler.com',
                  'candidatura-winkler.herokuapp.com']
