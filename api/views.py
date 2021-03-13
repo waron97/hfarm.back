@@ -102,7 +102,7 @@ def register_user(request: HttpRequest):
         if (account_type == "external"):
             client_id = body["clientId"]
             new_user = User(username=username, password=password,
-                            account_type='external', client_id=client_id)
+                            account_type='external', client_id=client_id, favorites=[])
             new_user.save()
         else:
             client_id = 'NOID'

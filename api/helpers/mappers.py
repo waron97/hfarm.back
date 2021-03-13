@@ -41,6 +41,7 @@ def applications_mapper(application: CallApplication):
         'applicantSeniority': application.seniority,
         'applicationStatus': application.status,
         'timeApplied': application.time_applied.isoformat(),
+        'applicantType': application.applicant.account_type,
         'id': application.id
     }
 
