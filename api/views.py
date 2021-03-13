@@ -121,9 +121,9 @@ def register_user(request: HttpRequest):
 
     # except JSONDecodeError:
     #     return HttpResponseBadRequest('invalid_json')
-    # except IntegrityError as e:
-    #     print(type(e), e)
-    #     return HttpResponseBadRequest('existing_username')
+    except IntegrityError as e:
+        print(type(e), e)
+        return HttpResponseBadRequest('existing_username')
     # except KeyError:
     #     return HttpResponseBadRequest('invalid_json')
     except Exception as e:
