@@ -119,15 +119,16 @@ def register_user(request: HttpRequest):
         }
         return HttpResponse(json.dumps(json_user_object))
 
-    except JSONDecodeError:
-        return HttpResponseBadRequest('invalid_json')
+    # except JSONDecodeError:
+    #     return HttpResponseBadRequest('invalid_json')
     # except IntegrityError as e:
     #     print(type(e), e)
     #     return HttpResponseBadRequest('existing_username')
     # except KeyError:
     #     return HttpResponseBadRequest('invalid_json')
-    # except:
-    #     return HttpResponseServerError('server_failure')
+    except Exception as e:
+        print(type(e), e)
+        return HttpResponseServerError('server_failure')
 
 
 @csrf_exempt
