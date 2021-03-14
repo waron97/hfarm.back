@@ -11,6 +11,9 @@ class User(models.Model):
     client_id = models.CharField(max_length=100, null=True)
     favorites = models.JSONField()
 
+    def to_dict(self):
+        pass
+
 
 class Token(models.Model):
     id = models.AutoField(primary_key=True)
@@ -27,6 +30,9 @@ class Call(models.Model):
     type = models.CharField(max_length=20)
     time_posted = models.DateTimeField(auto_now_add=True)
 
+    def to_dict(self):
+        pass
+
 
 class CallApplication(models.Model):
     id = models.AutoField(primary_key=True)
@@ -35,3 +41,13 @@ class CallApplication(models.Model):
     applicant = models.ForeignKey(User, on_delete=models.CASCADE)
     seniority = models.CharField(max_length=20)
     time_applied = models.DateTimeField(auto_now_add=True)
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'status': 'self.status',
+            'target': self.application_target.to_dict(),
+            'applicant': self.applicant.to_dict(),
+            'seniority': self.seniority,
+            'timeApplied': self.time_applied.isoformat()
+        }
