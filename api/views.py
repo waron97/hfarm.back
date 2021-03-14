@@ -266,7 +266,7 @@ def create_job_application(request: HttpRequest):
         user = validators.check_token_valid_return_user(token)
         call = Call.objects.get(id=call_id)
         application = CallApplication(
-            status='received', application_target=call, applicant=user, seniority=seniority)
+            status='ricevuto', application_target=call, applicant=user, seniority=seniority)
         application.save()
         return HttpResponse('ok')
     except KeyError:
