@@ -420,3 +420,37 @@ def get_user_applications(request: HttpRequest):
     except Exception as e:
         print(type(e), e)
         return HttpResponseServerError('server_failure')
+
+
+def edit_call(request):
+    """
+    METODO: POST
+    Riceve AUTHORIZATION nei HEADER, contenente il token di sessione.
+    Riceve in POST-BODY l'id della Call, il nuovo titolo e la nuova descrizione
+    Ritorna 200
+
+    TODO
+        -utente può modificare solo le sue call
+    """
+    if not validators.is_authorization_header_present(request):
+        return HttpResponseBadRequest('no_token')
+    if not validators.check_token_valid(request.headers['authorization']):
+        return HttpResponseBadRequest('no_token')
+    try:
+        token = request.headers["authorization"]
+        if (validators.check_token_valid(token)):
+            call_id = json.loads(request.body)["callId"]
+            new_title = json.loads(request.body)["newTitle"]
+            new_description = json.loads(request.body)["newDescription"]
+            call_obj: Call = Call.objects.get(id=call_id)
+            call_obj.title = new_title
+            call_obj.description = new_description
+            call_obj.save()
+            print(
+                f"Call modified:\n new title ${new_title}, \nnew_description ${new_description}")
+            return HttpResponse('ok')
+        else:
+            return HttpResponseBadRequest('invalid token')
+    except Exception as e:
+        print(type(e), e)
+        return HttpResponseServerError('server_failure')

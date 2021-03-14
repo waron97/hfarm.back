@@ -13,5 +13,6 @@ urlpatterns = [
     path('updateUserFavorites', views.update_user_favorites),
     path('updateApplicationStatus', views.update_application_status),
     path('getUserPosts', views.get_user_posts),
-    path('getUserApplications', views.get_user_applications)
+    path('getUserApplications', views.get_user_applications),
+    path('editCall', views.edit_call)
 ]
